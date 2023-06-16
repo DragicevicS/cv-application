@@ -10,6 +10,7 @@ class PersonalInfo extends Component {
           id="name"
           name="name"
           placeholder="First and last name"
+          onChange={this.props.handleChange}
           required
         />
         <input
@@ -17,20 +18,23 @@ class PersonalInfo extends Component {
           id="title"
           name="title"
           placeholder="Occupational title"
+          onChange={this.props.handleChange}
           required
         />
         <input
           type="number"
-          id="number "
+          id="number"
           name="number"
           placeholder="Phone number"
+          onChange={this.props.handleChange}
           required
         />
         <input
           type="email"
           id="email"
           name="email"
-          placeholder="Email adress"
+          placeholder="Email address"
+          onChange={this.props.handleChange}
           required
         />
         <input
@@ -38,19 +42,21 @@ class PersonalInfo extends Component {
           id="linkedin"
           name="linkedin"
           placeholder="LinkedIn profile (optional)"
+          onChange={this.props.handleChange}
         />
         <input
           type="text"
           id="github"
           name="github"
           placeholder="Github profile (optional)"
-          required
+          onChange={this.props.handleChange}
         />
         <input
           type="text"
           id="location"
           name="location"
           placeholder="Location"
+          onChange={this.props.handleChange}
           required
         />
         <textarea
@@ -59,6 +65,7 @@ class PersonalInfo extends Component {
           maxLength={"500"}
           rows={"5"}
           placeholder="About me (max. 500)"
+          onChange={this.props.handleChange}
           required
         />
       </form>
@@ -82,7 +89,7 @@ export class Editor extends Component {
       <div>
         <h2>Editor</h2>
         <div className="editor-container">
-          <PersonalInfo />
+          <PersonalInfo handleChange={this.props.onChange}/>
           <br /><hr /><br />
           <WorkExperience />
         </div>

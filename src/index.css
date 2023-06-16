@@ -35,8 +35,7 @@
 
 .main-container {
   display: flex;
-  justify-content: space-around;
-  align-items: center;
+  justify-content: center;
   gap: 2em;
   width: 100%;
 }
@@ -49,7 +48,21 @@
   padding: 1em 3em;
   width: 588px;
   height: 832px;
+  background-color: white;
   border: 1px solid black;
+  box-shadow: 0 0 7px;;
+}
+
+.editor-container {
+  padding: 1em 3em;
+  width: 588px;
+  height: min-content;
+}
+
+.preview-container {
+  width: 588px;
+  height: 832px;
+  padding: 70px;
 }
 
 form {
@@ -78,14 +91,19 @@ textarea {
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;
-  margin: 0;
 }
 
 input[type=number] {
   -moz-appearance: textfield;
 }
 
-form > h3 {
+h3 {
   color: var(--color-4);
   align-self: flex-start;
+}
+
+hr {
+  width: 105%;
+  height: 3px;
+  background-color: var(--color-3);
 }
