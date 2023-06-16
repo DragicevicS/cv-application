@@ -10,7 +10,7 @@ class PersonalInfo extends Component {
           id="name"
           name="name"
           placeholder="First and last name"
-          onChange={this.props.handleChange}
+          onChange={this.props.handleInputChange}
           required
         />
         <input
@@ -18,7 +18,7 @@ class PersonalInfo extends Component {
           id="title"
           name="title"
           placeholder="Occupational title"
-          onChange={this.props.handleChange}
+          onChange={this.props.handleInputChange}
           required
         />
         <input
@@ -26,7 +26,7 @@ class PersonalInfo extends Component {
           id="number"
           name="number"
           placeholder="Phone number"
-          onChange={this.props.handleChange}
+          onChange={this.props.handleInputChange}
           required
         />
         <input
@@ -34,7 +34,15 @@ class PersonalInfo extends Component {
           id="email"
           name="email"
           placeholder="Email address"
-          onChange={this.props.handleChange}
+          onChange={this.props.handleInputChange}
+          required
+        />
+        <input
+          type="text"
+          id="location"
+          name="location"
+          placeholder="Location"
+          onChange={this.props.handleInputChange}
           required
         />
         <input
@@ -42,31 +50,31 @@ class PersonalInfo extends Component {
           id="linkedin"
           name="linkedin"
           placeholder="LinkedIn profile (optional)"
-          onChange={this.props.handleChange}
+          onChange={this.props.handleInputChange}
         />
         <input
           type="text"
           id="github"
           name="github"
           placeholder="Github profile (optional)"
-          onChange={this.props.handleChange}
-        />
-        <input
-          type="text"
-          id="location"
-          name="location"
-          placeholder="Location"
-          onChange={this.props.handleChange}
-          required
+          onChange={this.props.handleInputChange}
         />
         <textarea
           id="about"
           name="about"
-          maxLength={"500"}
+          maxLength={"600"}
           rows={"5"}
-          placeholder="About me (max. 500)"
-          onChange={this.props.handleChange}
+          placeholder="About me (max. 600)"
+          onChange={this.props.handleInputChange}
           required
+        />
+        <label htmlFor="profile-pic">Choose a profile picture:</label>
+        <input
+          type="file"
+          id="profile-pic"
+          name="profile-pic"
+          accept="image/png, image/jpeg"
+          onChange={this.props.handleFileChange}
         />
       </form>
     );
@@ -83,15 +91,35 @@ class WorkExperience extends Component {
   };
 };
 
+class ColorPicker extends Component {
+  render() {
+    return (
+      <div className="color-picker-div">
+        <label htmlFor="color">Color Picker:</label>
+        <input
+          type="color"
+          id="color"
+          value="#3370a8"
+          onChange={this.props.handleInputChange}
+        />
+      </div>
+    );
+  };
+};
+
 export class Editor extends Component {
   render() {
+    const { onInputChange, onFileChange } = this.props;
+
     return (
       <div>
         <h2>Editor</h2>
         <div className="editor-container">
-          <PersonalInfo handleChange={this.props.onChange}/>
+          <PersonalInfo handleInputChange={onInputChange} handleFileChange={onFileChange} />
           <br /><hr /><br />
           <WorkExperience />
+          <br /><hr /><br />
+          <ColorPicker handleInputChange={onInputChange} />
         </div>
       </div>
     );

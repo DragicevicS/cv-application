@@ -5,6 +5,9 @@
   --color-4: #183A1D;
 }
 
+
+/* General */
+
 * {
   margin: 0;
   padding: 0;
@@ -22,6 +25,9 @@
   background-color: var(--color-2);
 }
 
+
+/* App */
+
 .App {
   display: flex;
   flex-direction: column;
@@ -29,7 +35,7 @@
   text-align: center;
 }
 
-.App h1 {
+.App > h1 {
   color: var(--color-4);
 }
 
@@ -42,27 +48,22 @@
 
 .editor-container,
 .preview-container {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  padding: 1em 3em;
-  width: 588px;
-  height: 832px;
+  width: 595px;
+  height: 842px;
   background-color: white;
   border: 1px solid black;
   box-shadow: 0 0 7px;;
 }
 
-.editor-container {
-  padding: 1em 3em;
-  width: 588px;
-  height: min-content;
-}
 
-.preview-container {
-  width: 588px;
-  height: 832px;
-  padding: 70px;
+/* Editor */
+
+.editor-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 1.3em 3em;
+  height: min-content;
 }
 
 form {
@@ -87,6 +88,11 @@ textarea {
   resize: none;
 }
 
+.editor-container h3 {
+  color: var(--color-4);
+  align-self: flex-start;
+}
+
 /* hiding arrows from number inputs */
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
@@ -97,13 +103,108 @@ input[type=number] {
   -moz-appearance: textfield;
 }
 
-h3 {
-  color: var(--color-4);
-  align-self: flex-start;
+.color-picker-div {
+  display: flex;
+  align-items: center;
+  gap: 2em;
 }
 
-hr {
-  width: 105%;
+.color-picker-div input {
+  width: 38px;
+  height: 38px;
+}
+
+.editor-container hr {
+  width: 100%;
   height: 3px;
   background-color: var(--color-3);
+}
+
+
+/* Preview */
+
+.preview-container {
+  display: grid;
+  grid-template: repeat(3, 1fr) / 1fr 1.6fr;
+  align-items: center;
+  height: 832px;
+  padding: 60px;
+}
+
+.picture-div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  grid-area: 1/1/2/2;
+  width: 100%;
+  height: 100%;
+  background-color: rgb(51, 112, 168);
+}
+
+.picture {
+  width: 145px;
+  height: auto;
+}
+
+.about-div {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  grid-area: 2/1/4/2;
+  padding: 8px;
+  font-size: 0.8rem;
+  text-align: justify;
+  width: 100%;
+  height: 100%;
+  background-color: rgb(51, 112, 168);
+}
+
+.about-div > h2 {
+  text-align: center;
+}
+
+header {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  grid-area: 1/2/2/3;
+  padding: 0.5em;
+}
+
+.additional-info-div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 3px;
+  font-size: 0.75rem;
+  padding-left: 4em;
+}
+
+.additional-info-div div {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.number,
+.email,
+.linkedin,
+.github,
+.location {
+  width: 20px;
+  height: auto;
+}
+
+.work-exp {
+  grid-area: 2/2/3/3;
+}
+
+.education {
+  grid-area: 3/2/4/3;
+}
+
+.preview-container hr {
+  width: 100%;
+  height: 3px;
+  background-color: rgb(51, 112, 168);
 }
