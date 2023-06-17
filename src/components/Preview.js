@@ -53,11 +53,13 @@ export class Preview extends Component {
             </div>
             <hr style={{backgroundColor: color}} />
           </header>
-          <div className="work-exp">
-            
+          <div className="work-exp-preview">
+            <h3>Work experience</h3>
+            <hr style={{backgroundColor: color}} />
           </div>
-          <div className="education">
-
+          <div className="education-preview">
+            <h3>Education</h3>
+            <hr style={{backgroundColor: color}} />
           </div>
         </div>
       </div>

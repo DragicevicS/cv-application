@@ -49,7 +49,6 @@
 .editor-container,
 .preview-container {
   width: 595px;
-  height: 842px;
   background-color: white;
   border: 1px solid black;
   box-shadow: 0 0 7px;;
@@ -99,8 +98,39 @@ input::-webkit-inner-spin-button {
   -webkit-appearance: none;
 }
 
-input[type=number] {
-  -moz-appearance: textfield;
+.work-exp-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+}
+
+.work-exp-container h3 {
+  text-align: left;
+}
+
+.btn-div {
+  display: flex;
+  justify-content: flex-start;
+  gap: 1em;
+}
+
+.btn-div button {
+  width: 5.5em;
+  padding: 3px 10px;
+  background-color: var(--color-3);
+  color: var(--color-4);
+  font-weight: 900;
+  border: transparent;
+  border-bottom: 2px solid var(--color-4);
+  border-top: 2px solid var(--color-4);
+  border-radius: 5px;
+  transition: transform .2s ease;
+}
+
+.btn-div button:hover {
+  cursor: pointer;
+  transform: scale(1.05);
 }
 
 .color-picker-div {
@@ -112,6 +142,12 @@ input[type=number] {
 .color-picker-div input {
   width: 38px;
   height: 38px;
+  transition: transform .2s ease;
+}
+
+.color-picker-div input:hover {
+  cursor: pointer;
+  transform: scale(1.05);
 }
 
 .editor-container hr {
@@ -128,7 +164,7 @@ input[type=number] {
   grid-template: repeat(3, 1fr) / 1fr 1.6fr;
   align-items: center;
   height: 832px;
-  padding: 60px;
+  padding: 20px;
 }
 
 .picture-div {
@@ -171,13 +207,17 @@ header {
   padding: 0.5em;
 }
 
+header h2 {
+  opacity: 0.75;
+}
+
 .additional-info-div {
   display: flex;
   flex-direction: column;
   justify-content: center;
   gap: 3px;
   font-size: 0.75rem;
-  padding-left: 4em;
+  padding-left: 1em;
 }
 
 .additional-info-div div {
@@ -195,12 +235,14 @@ header {
   height: auto;
 }
 
-.work-exp {
+.work-exp-preview {
   grid-area: 2/2/3/3;
+  padding: 0.5em;
 }
 
-.education {
+.education-preview {
   grid-area: 3/2/4/3;
+  padding: 0.5em;
 }
 
 .preview-container hr {

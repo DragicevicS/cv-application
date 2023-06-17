@@ -8,7 +8,6 @@ class PersonalInfo extends Component {
         <input
           type="text"
           id="name"
-          name="name"
           placeholder="First and last name"
           onChange={this.props.handleInputChange}
           required
@@ -16,7 +15,6 @@ class PersonalInfo extends Component {
         <input
           type="text"
           id="title"
-          name="title"
           placeholder="Occupational title"
           onChange={this.props.handleInputChange}
           required
@@ -24,7 +22,6 @@ class PersonalInfo extends Component {
         <input
           type="number"
           id="number"
-          name="number"
           placeholder="Phone number"
           onChange={this.props.handleInputChange}
           required
@@ -32,7 +29,6 @@ class PersonalInfo extends Component {
         <input
           type="email"
           id="email"
-          name="email"
           placeholder="Email address"
           onChange={this.props.handleInputChange}
           required
@@ -40,7 +36,6 @@ class PersonalInfo extends Component {
         <input
           type="text"
           id="location"
-          name="location"
           placeholder="Location"
           onChange={this.props.handleInputChange}
           required
@@ -48,23 +43,20 @@ class PersonalInfo extends Component {
         <input
           type="text"
           id="linkedin"
-          name="linkedin"
           placeholder="LinkedIn profile (optional)"
           onChange={this.props.handleInputChange}
         />
         <input
           type="text"
           id="github"
-          name="github"
           placeholder="Github profile (optional)"
           onChange={this.props.handleInputChange}
         />
         <textarea
           id="about"
-          name="about"
-          maxLength={"600"}
+          maxLength={"800"}
           rows={"5"}
-          placeholder="About me (max. 600)"
+          placeholder="About me (max. 800 characters)"
           onChange={this.props.handleInputChange}
           required
         />
@@ -72,7 +64,6 @@ class PersonalInfo extends Component {
         <input
           type="file"
           id="profile-pic"
-          name="profile-pic"
           accept="image/png, image/jpeg"
           onChange={this.props.handleFileChange}
         />
@@ -84,8 +75,50 @@ class PersonalInfo extends Component {
 class WorkExperience extends Component {
   render() {
     return (
-      <div>
+      <div className="work-exp-container">
         <h3>Work Experience</h3>
+        <form className="work-exp">
+          <input
+            type="text"
+            id="company"
+            placeholder="Company name"
+            onChange={this.props.handleInputChange}
+            required
+          />
+          <input
+            type="text"
+            id="job"
+            placeholder="Job title"
+            onChange={this.props.handleInputChange}
+            required
+          />
+          <input
+            type="number"
+            id="from"
+            placeholder="From (e.g. 06/2021)"
+            onChange={this.props.handleInputChange}
+            required
+          />
+          <input
+            type="number"
+            id="to"
+            placeholder="To (e.g. 06/2023 or Present)"
+            onChange={this.props.handleInputChange}
+            required
+          />
+          <textarea
+            id="description"
+            maxLength={"400"}
+            rows={"3"}
+            placeholder="Job description (max. 400 characters)"
+            onChange={this.props.handleInputChange}
+            required
+          />
+        </form>
+        <div className="btn-div">
+          <button type="button">Delete</button>
+          <button type="button">&#10010;</button>
+        </div>
       </div>
     );
   };
