@@ -7,7 +7,20 @@ import locationImg from '../images/location.svg';
 
 export class Preview extends Component {
   render() {
-    const { name, title, number, email, location, linkedin, github, about, picture, color, workExperience, education } = this.props;
+    const {
+      name,
+      title,
+      number,
+      email,
+      location,
+      linkedin,
+      github,
+      about,
+      picture,
+      color,
+      workExperience,
+      education
+    } = this.props;
 
     return (
       <div>

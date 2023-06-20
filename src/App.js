@@ -67,7 +67,7 @@ class App extends Component {
     });
   };
 
-  handleAddWorkForm = () => {
+  handleAddWorkExpForm = () => {
     this.setState((prevState) => {
       const workExperience = [
         ...prevState.formData.workExperience,
@@ -90,7 +90,7 @@ class App extends Component {
     });
   };
 
-  handleDeleteWorkForm = (id) => {
+  handleDeleteWorkExpForm = (id) => {
     this.setState((prevState) => {
       const workExperience = prevState.formData.workExperience.filter(
         (workExp) => workExp.id !== id
@@ -169,8 +169,8 @@ class App extends Component {
             onInputChange={this.handleInputChange}
             onFileChange={this.handleFileChange}
             onWorkExpInputChange={this.handleWorkExpInputChange}
-            onAddForm={this.handleAddWorkForm}
-            onDeleteForm={this.handleDeleteWorkForm}
+            onAddWorkExpForm={this.handleAddWorkExpForm}
+            onDeleteWorkExpForm={this.handleDeleteWorkExpForm}
             onEducationInputChange={this.handleEducationInputChange}
             onAddEducationForm={this.handleAddEducationForm}
             onDeleteEducationForm={this.handleDeleteEducationForm}
