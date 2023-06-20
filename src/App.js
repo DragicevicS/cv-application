@@ -55,8 +55,8 @@ class App extends Component {
     this.setState((prevState) => {
       const workExperience = prevState.formData.workExperience.map((workExp) =>
         workExp.id === id
-          ? { ...workExp, [inputId]: value }  // update the matching job
-          : workExp  // leave the other jobs unchanged
+          ? { ...workExp, [inputId]: value }
+          : workExp
       );
       return {
         formData: {
@@ -109,8 +109,8 @@ class App extends Component {
     this.setState((prevState) => {
       const education = prevState.formData.education.map((edu) =>
         edu.id === id
-          ? { ...edu, [inputId]: value }  // update the matching education
-          : edu  // leave the other education unchanged
+          ? { ...edu, [inputId]: value }
+          : edu
       );
       return {
         formData: {
