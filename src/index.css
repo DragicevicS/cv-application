@@ -65,12 +65,17 @@
   height: min-content;
 }
 
+.editor-container h3 {
+  color: var(--color-4);
+}
+
 form {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   gap: 10px;
   width: 100%;
+  color: var(--color-4);
 }
 
 input,
@@ -81,15 +86,20 @@ textarea {
   background-color: var(--color-1);
   border: 2px solid var(--color-4);
   border-radius: 5px;
+  transition: transform .1s ease;
+}
+
+input:hover,
+textarea:hover {
+  transform: scale(1.01);
 }
 
 textarea {
   resize: none;
 }
 
-.editor-container h3 {
-  color: var(--color-4);
-  align-self: flex-start;
+#profile-pic:hover {
+  cursor: pointer;
 }
 
 /* hiding arrows from number inputs */
@@ -98,15 +108,13 @@ input::-webkit-inner-spin-button {
   -webkit-appearance: none;
 }
 
-.work-exp-container {
+.work-exp-container,
+.education-container {
   display: flex;
   flex-direction: column;
   gap: 10px;
   width: 100%;
-}
-
-.work-exp-container h3 {
-  text-align: left;
+  margin-top: 10px;
 }
 
 .btn-div {
@@ -115,39 +123,48 @@ input::-webkit-inner-spin-button {
   gap: 1em;
 }
 
-.btn-div button {
+button {
   width: 5.5em;
   padding: 3px 10px;
   background-color: var(--color-3);
   color: var(--color-4);
   font-weight: 900;
   border: transparent;
+  border-left: 2px solid var(--color-3);
+  border-right: 2px solid var(--color-3);
   border-bottom: 2px solid var(--color-4);
   border-top: 2px solid var(--color-4);
-  border-radius: 5px;
-  transition: transform .2s ease;
+  border-radius: 20%;
+  transition: transform .3s ease;
 }
 
-.btn-div button:hover {
+button:hover {
   cursor: pointer;
-  transform: scale(1.05);
+  transform: scale(1.08);
+  border: transparent;
+  border-left: 2px solid var(--color-4);
+  border-right: 2px solid var(--color-4);
+  border-bottom: 2px solid var(--color-3);
+  border-top: 2px solid var(--color-3);
 }
 
 .color-picker-div {
   display: flex;
   align-items: center;
-  gap: 2em;
+  gap: 1.6em;
+  font-weight: 700;
+  color: var(--color-4);
 }
 
 .color-picker-div input {
   width: 38px;
   height: 38px;
-  transition: transform .2s ease;
+  transition: transform .3s ease;
 }
 
 .color-picker-div input:hover {
   cursor: pointer;
-  transform: scale(1.05);
+  transform: scale(1.08);
 }
 
 .editor-container hr {
@@ -161,10 +178,11 @@ input::-webkit-inner-spin-button {
 
 .preview-container {
   display: grid;
-  grid-template: repeat(3, 1fr) / 1fr 1.6fr;
+  grid-template: 1fr 3fr / 1fr 1.6fr;
   align-items: center;
   height: 832px;
-  padding: 20px;
+  position: sticky;
+  top: 10px;
 }
 
 .picture-div {
@@ -174,19 +192,21 @@ input::-webkit-inner-spin-button {
   grid-area: 1/1/2/2;
   width: 100%;
   height: 100%;
+  padding: 1em;
   background-color: rgb(51, 112, 168);
 }
 
 .picture {
   width: 145px;
   height: auto;
+  border-radius: 20px;
 }
 
 .about-div {
   display: flex;
   flex-direction: column;
   gap: 1em;
-  grid-area: 2/1/4/2;
+  grid-area: 2/1/3/2;
   padding: 8px;
   font-size: 0.8rem;
   text-align: justify;
@@ -199,15 +219,19 @@ input::-webkit-inner-spin-button {
   text-align: center;
 }
 
-header {
+.personal-work-edu-div {
+  grid-area: 1/2/3/3;
+  height: 100%;
+  padding: 1em 0.6em;
+}
+
+.personal-info-preview {
   display: flex;
   flex-direction: column;
   gap: 1em;
-  grid-area: 1/2/2/3;
-  padding: 0.5em;
 }
 
-header h2 {
+.personal-info-preview h2 {
   opacity: 0.75;
 }
 
@@ -237,16 +261,35 @@ header h2 {
 
 .work-exp-preview {
   grid-area: 2/2/3/3;
-  padding: 0.5em;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+}
+
+.work-exp-header {
+  display: grid;
+  grid-template: 1fr / 1.35fr 1fr;
+  align-items: center;
+  text-align: right;
+  width: 100%;
+}
+
+.job-company-div {
+  text-align: left;
+}
+
+.description-p {
+  text-align: justify;
+  font-size: 0.8rem;
+  opacity: 0.9;
 }
 
 .education-preview {
   grid-area: 3/2/4/3;
-  padding: 0.5em;
 }
 
 .preview-container hr {
   width: 100%;
-  height: 3px;
+  height: 4px;
   background-color: rgb(51, 112, 168);
 }

@@ -54,9 +54,9 @@ class PersonalInfo extends Component {
         />
         <textarea
           id="about"
-          maxLength={"800"}
+          maxLength={"1000"}
           rows={"5"}
-          placeholder="About me (max. 800 characters)"
+          placeholder="About me (max. 1000 characters)"
           onChange={this.props.handleInputChange}
           required
         />
@@ -74,55 +74,113 @@ class PersonalInfo extends Component {
 
 class WorkExperience extends Component {
   render() {
+    const { workExp, onInputChange, onDeleteForm } = this.props;
+
     return (
       <div className="work-exp-container">
-        <h3>Work Experience</h3>
         <form className="work-exp">
+        <input
+            type="text"
+            id="job"
+            placeholder="Job title"
+            value={workExp.job || ''}
+            onChange={(e) => onInputChange(e, workExp.id)}
+            required
+          />
           <input
             type="text"
             id="company"
             placeholder="Company name"
-            onChange={this.props.handleInputChange}
+            value={workExp.company || ''}
+            onChange={(e) => onInputChange(e, workExp.id)}
             required
           />
           <input
             type="text"
-            id="job"
-            placeholder="Job title"
-            onChange={this.props.handleInputChange}
-            required
-          />
-          <input
-            type="number"
             id="from"
-            placeholder="From (e.g. 06/2021)"
-            onChange={this.props.handleInputChange}
+            placeholder="From (e.g. 06.2021)"
+            value={workExp.from || ''}
+            onChange={(e) => onInputChange(e, workExp.id)}
             required
           />
           <input
-            type="number"
+            type="text"
             id="to"
-            placeholder="To (e.g. 06/2023 or Present)"
-            onChange={this.props.handleInputChange}
+            placeholder="To (e.g. 03.2023 or Present)"
+            value={workExp.to || ''}
+            onChange={(e) => onInputChange(e, workExp.id)}
             required
           />
           <textarea
-            id="description"
-            maxLength={"400"}
+            id="jobDescription"
+            maxLength={"300"}
             rows={"3"}
-            placeholder="Job description (max. 400 characters)"
-            onChange={this.props.handleInputChange}
+            placeholder="Job description (max. 300 characters)"
+            value={workExp.jobDescription || ''}
+            onChange={(e) => onInputChange(e, workExp.id)}
             required
           />
         </form>
-        <div className="btn-div">
-          <button type="button">Delete</button>
-          <button type="button">&#10010;</button>
-        </div>
+        <button  type="button" onClick={() => onDeleteForm(workExp.id)}>Delete</button>
       </div>
     );
   };
 };
+
+class Education extends Component {
+  render() {
+    const { education, onInputChange, onDeleteForm } = this.props;
+
+    return (
+      <div className="education-container">
+        <form className="education">
+          <input
+            type="text"
+            id="degree"
+            placeholder="Degree"
+            value={education.degree || ''}
+            onChange={(e) => onInputChange(e, education.id)}
+            required
+          />
+          <input
+            type="text"
+            id="institution"
+            placeholder="Institution name"
+            value={education.institution || ''}
+            onChange={(e) => onInputChange(e, education.id)}
+            required
+          />
+          <input
+            type="text"
+            id="eduFrom"
+            placeholder="From (e.g. 2015.)"
+            value={education.eduFrom || ''}
+            onChange={(e) => onInputChange(e, education.id)}
+            required
+          />
+          <input
+            type="text"
+            id="eduTo"
+            placeholder="To (e.g. 2020. or Present)"
+            value={education.eduTo || ''}
+            onChange={(e) => onInputChange(e, education.id)}
+            required
+          />
+          <textarea
+            id="eduDescription"
+            maxLength={"300"}
+            rows={"3"}
+            placeholder="Education description (max. 300 characters)"
+            value={education.eduDescription || ''}
+            onChange={(e) => onInputChange(e, education.id)}
+            required
+          />
+        </form>
+        <button type="button" onClick={() => onDeleteForm(education.id)}>Delete</button>
+      </div>
+    );
+  }
+}
 
 class ColorPicker extends Component {
   render() {
@@ -142,15 +200,50 @@ class ColorPicker extends Component {
 
 export class Editor extends Component {
   render() {
-    const { onInputChange, onFileChange } = this.props;
+    const {
+      formData,
+      onInputChange,
+      onFileChange,
+      onWorkExpInputChange,
+      onAddForm,
+      onDeleteForm,
+      onEducationInputChange,
+      onAddEducationForm,
+      onDeleteEducationForm,
+    } = this.props;
 
     return (
       <div>
         <h2>Editor</h2>
         <div className="editor-container">
-          <PersonalInfo handleInputChange={onInputChange} handleFileChange={onFileChange} />
+          <PersonalInfo
+            handleInputChange={onInputChange}
+            handleFileChange={onFileChange}
+          />
           <br /><hr /><br />
-          <WorkExperience />
+          <h3>Work Experience</h3>
+          {formData.workExperience.map((workExp) => (
+            <WorkExperience
+              key={workExp.id}
+              workExp={workExp}
+              onInputChange={onWorkExpInputChange}
+              onDeleteForm={onDeleteForm}
+            />
+          ))}
+          <br />
+          <button type="button" onClick={onAddForm}>Add</button>
+          <br /><hr /><br />
+          <h3>Education</h3>
+          {formData.education.map((education) => (
+            <Education
+              key={education.id}
+              education={education}
+              onInputChange={onEducationInputChange}
+              onDeleteForm={onDeleteEducationForm}
+            />
+          ))}
+          <br />
+          <button type="button" onClick={onAddEducationForm}>Add</button>
           <br /><hr /><br />
           <ColorPicker handleInputChange={onInputChange} />
         </div>

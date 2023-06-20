@@ -17,6 +17,9 @@ class App extends Component {
         about: '',
         picture: '',
         color: '',
+        workExperience: [{ id: 0, job: '', company: '', jobFrom: '', jobTo: '', jobDescription: '' }],
+        education: [{ id: 0, degree: '', institution: '', eduFrom: '', eduTo: '', eduDescription: '' }],
+        nextId: 1,
       }  
     };
   };
@@ -47,13 +50,131 @@ class App extends Component {
     if (file) reader.readAsDataURL(file);
   };
 
+  handleWorkExpInputChange = (e, id) => {
+    const { id: inputId, value } = e.target;
+    this.setState((prevState) => {
+      const workExperience = prevState.formData.workExperience.map((workExp) =>
+        workExp.id === id
+          ? { ...workExp, [inputId]: value }  // update the matching job
+          : workExp  // leave the other jobs unchanged
+      );
+      return {
+        formData: {
+          ...prevState.formData,
+          workExperience,
+        },
+      };
+    });
+  };
+
+  handleAddWorkForm = () => {
+    this.setState((prevState) => {
+      const workExperience = [
+        ...prevState.formData.workExperience,
+        {
+          id: prevState.formData.nextId,
+          job: '',
+          company: '',
+          jobFrom: '',
+          jobTo: '',
+          jobDescription: '',
+        },
+      ];
+      return {
+        formData: {
+          ...prevState.formData,
+          workExperience,
+          nextId: prevState.formData.nextId + 1,
+        },
+      };
+    });
+  };
+
+  handleDeleteWorkForm = (id) => {
+    this.setState((prevState) => {
+      const workExperience = prevState.formData.workExperience.filter(
+        (workExp) => workExp.id !== id
+      );
+      return {
+        formData: {
+          ...prevState.formData,
+          workExperience,
+        },
+      };
+    });
+  };
+
+  handleEducationInputChange = (e, id) => {
+    const { id: inputId, value } = e.target;
+    this.setState((prevState) => {
+      const education = prevState.formData.education.map((edu) =>
+        edu.id === id
+          ? { ...edu, [inputId]: value }  // update the matching education
+          : edu  // leave the other education unchanged
+      );
+      return {
+        formData: {
+          ...prevState.formData,
+          education,
+        },
+      };
+    });
+  };
+
+  handleAddEducationForm = () => {
+    this.setState((prevState) => {
+      const education = [
+        ...prevState.formData.education,
+        {
+          id: prevState.formData.nextId,
+          degree: '',
+          institution: '',
+          eduFrom: '',
+          eduTo: '',
+          educationDescription: '',
+        },
+      ];
+      return {
+        formData: {
+          ...prevState.formData,
+          education,
+          nextId: prevState.formData.nextId + 1,
+        },
+      };
+    });
+  };
+
+  handleDeleteEducationForm = (id) => {
+    this.setState((prevState) => {
+      const education = prevState.formData.education.filter(
+        (edu) => edu.id !== id
+      );
+      return {
+        formData: {
+          ...prevState.formData,
+          education,
+        },
+      };
+    });
+  };
+
   render() {
     const { formData } = this.state;
     return (
       <div className="App">
         <h1>CV Application</h1>
         <div className="main-container">
-          <Editor onInputChange={this.handleInputChange} onFileChange={this.handleFileChange} />
+          <Editor
+            formData={formData}
+            onInputChange={this.handleInputChange}
+            onFileChange={this.handleFileChange}
+            onWorkExpInputChange={this.handleWorkExpInputChange}
+            onAddForm={this.handleAddWorkForm}
+            onDeleteForm={this.handleDeleteWorkForm}
+            onEducationInputChange={this.handleEducationInputChange}
+            onAddEducationForm={this.handleAddEducationForm}
+            onDeleteEducationForm={this.handleDeleteEducationForm}
+          />
           <Preview {...formData} />
         </div>
       </div>
